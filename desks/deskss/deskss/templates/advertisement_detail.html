@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Подробности объявления</title>
+</head>
+<body>
+    <h1>{{ advertisement.title }}</h1>
+    <p>{{ advertisement.text }}</p>
+    <h2>Отклики:</h2>
+    {% for response in responses %}
+        <p>{{ response.text }}</p>
+    {% empty %}
+        <p>Пока нет откликов</p>
+    {% endfor %}
+    <h2>Отправить отклик:</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Отправить</button>
+    </form>
+</body>
+</html>

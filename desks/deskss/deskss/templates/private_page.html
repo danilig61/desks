@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Личная страница</title>
+</head>
+<body>
+    <h1>Личная страница</h1>
+    <h2>Мои объявления:</h2>
+    {% for advertisement in advertisements %}
+        <h3>{{ advertisement.title }}</h3>
+        <p>{{ advertisement.text }}</p>
+        <a href="{% url 'advertisement_detail' pk=advertisement.pk %}">Подробнее</a>
+        <form action="{% url 'delete_response' pk=response.pk %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Удалить</button>
+        </form>
+    {% empty %}
+        <p>У вас нет объявлений</p>
+    {% endfor %}
+</body>
+</html>
